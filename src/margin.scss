@@ -1,0 +1,46 @@
+
+$positions: t r b l x y;
+$values: 1 2 3 4;
+
+@each $i in $values {
+  .m-#{$i} {
+    margin: $i * .25rem;
+  }
+  .m-n#{$i} {
+    margin: -$i * .25rem;
+  }
+  @each $position in $positions {
+    @if $position == "t" or $position == "y"  {
+      .m#{$position}-#{$i} {
+        margin-top: $i * .25rem;
+      }
+      .m#{$position}-n#{$i} {
+        margin-top: -$i * .25rem;
+      }
+    }
+    @if $position == "b" or $position == "y"  {
+      .m#{$position}-#{$i} {
+        margin-bottom: $i * .25rem;
+      }
+      .m#{$position}-n#{$i} {
+        margin-bottom: -$i * .25rem;
+      }
+    }
+    @if $position == "l" or $position == "x"  {
+      .m#{$position}-#{$i} {
+        margin-left: $i * .25rem;
+      }
+      .m#{$position}-n#{$i} {
+        margin-left: -$i * .25rem;
+      }
+    }
+    @if $position == "r" or $position == "x"  {
+      .m#{$position}-#{$i} {
+        margin-right: $i * .25rem;
+      }
+      .m#{$position}-n#{$i} {
+        margin-right: -$i * .25rem;
+      }
+    }
+  }
+}
