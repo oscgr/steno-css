@@ -1,6 +1,30 @@
-.pl-1 {
-  padding-left: 1rem;
-}
-.pl-2 {
-  padding-left: 2rem;
+
+$positions: t r b l x y;
+
+@for $i from 1 through 4 {
+  .p-#{$i} {
+    padding: $i * .25rem;
+  }
+  @each $position in $positions {
+    @if $position == "t" or $position == "y"  {
+      .p#{$position}-#{$i} {
+        padding-top: $i * .25rem;
+      }
+    }
+    @if $position == "b" or $position == "y"  {
+      .p#{$position}-#{$i} {
+        padding-bottom: $i * .25rem;
+      }
+    }
+    @if $position == "l" or $position == "x"  {
+      .p#{$position}-#{$i} {
+        padding-left: $i * .25rem;
+      }
+    }
+    @if $position == "r" or $position == "x"  {
+      .p#{$position}-#{$i} {
+        padding-right: $i * .25rem;
+      }
+    }
+  }
 }
