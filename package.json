@@ -1,0 +1,24 @@
+{
+  "name": "steno-css",
+  "version": "1.0.0-SNAPSHOT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscgr/steno-css.git"
+  },
+  "keywords": [
+    "css"
+  ],
+  "scripts": {
+    "watch": "sass src/index.scss example/steno.css --watch",
+    "build": "sass src/index.scss build/steno.min.css -s compressed"
+  },
+  "author": "oscarvgrainger@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oscgr/steno-css/issues"
+  },
+  "homepage": "https://github.com/oscgr/steno-css#readme",
+  "dependencies": {
+    "sass": "^1.26.3"
+  }
+}
