@@ -1,45 +1,38 @@
+$positions: t r b l x y other;
+$values: 1 2 3 4 auto;
+$directions: pos neg;
 
-$positions: t r b l x y;
-$values: 1 2 3 4;
+@function get-value($value, $direction) {
+  @return if($value != auto, $direction * $value * .25rem, auto);
+}
+@function get-direction($direction) {
+  @return if($direction == pos, 1, -1);
+}
 
-@each $i in $values {
-  .m-#{$i} {
-    margin: $i * .25rem;
-  }
-  .m-n#{$i} {
-    margin: -$i * .25rem;
-  }
-  @each $position in $positions {
-    @if $position == "t" or $position == "y"  {
-      .m#{$position}-#{$i} {
-        margin-top: $i * .25rem;
-      }
-      .m#{$position}-n#{$i} {
-        margin-top: -$i * .25rem;
-      }
-    }
-    @if $position == "b" or $position == "y"  {
-      .m#{$position}-#{$i} {
-        margin-bottom: $i * .25rem;
-      }
-      .m#{$position}-n#{$i} {
-        margin-bottom: -$i * .25rem;
-      }
-    }
-    @if $position == "l" or $position == "x"  {
-      .m#{$position}-#{$i} {
-        margin-left: $i * .25rem;
-      }
-      .m#{$position}-n#{$i} {
-        margin-left: -$i * .25rem;
-      }
-    }
-    @if $position == "r" or $position == "x"  {
-      .m#{$position}-#{$i} {
-        margin-right: $i * .25rem;
-      }
-      .m#{$position}-n#{$i} {
-        margin-right: -$i * .25rem;
+
+@each $v in $values {
+
+  @each $d in $directions {
+
+    @each $p in $positions {
+
+      .m#{if($p != other, $p, "")}-#{if($d == pos and $v != auto, "", "n")}#{$v} {
+
+        @if ($p == "other") {
+          margin: get-value($v, get-direction($d)) !important;
+        }
+        @if ($p == "t" or $p == "y") {
+          margin-top: get-value($v, get-direction($d)) !important;
+        }
+        @if ($p == "r" or $p == "x") {
+          margin-right: get-value($v, get-direction($d)) !important;
+        }
+        @if ($p == "b" or $p == "y") {
+          margin-bottom: get-value($v, get-direction($d)) !important;
+        }
+        @if ($p == "l" or $p == "x") {
+          margin-left: get-value($v, get-direction($d)) !important;
+        }
       }
     }
   }
