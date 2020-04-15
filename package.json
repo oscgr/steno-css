@@ -18,7 +18,7 @@
     "url": "https://github.com/oscgr/steno-css/issues"
   },
   "homepage": "https://github.com/oscgr/steno-css#readme",
-  "dependencies": {
+  "devDependencies": {
     "sass": "^1.26.3"
   }
 }

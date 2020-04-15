@@ -1,29 +1,30 @@
+$positions: t r b l x y other;
+$values: 1 2 3 4;
 
-$positions: t r b l x y;
+@function get-value($value) {
+  @return $value * .25rem;
+}
 
-@for $i from 1 through 4 {
-  .p-#{$i} {
-    padding: $i * .25rem;
-  }
-  @each $position in $positions {
-    @if $position == "t" or $position == "y"  {
-      .p#{$position}-#{$i} {
-        padding-top: $i * .25rem;
+@each $v in $values {
+
+  @each $p in $positions {
+
+    .p#{if($p != other, $p, "")}-#{$v} {
+
+      @if ($p == "other") {
+        padding: get-value($v) !important;
       }
-    }
-    @if $position == "b" or $position == "y"  {
-      .p#{$position}-#{$i} {
-        padding-bottom: $i * .25rem;
+      @if ($p == "t" or $p == "y") {
+        padding-top: get-value($v) !important;
       }
-    }
-    @if $position == "l" or $position == "x"  {
-      .p#{$position}-#{$i} {
-        padding-left: $i * .25rem;
+      @if ($p == "r" or $p == "x") {
+        padding-right: get-value($v) !important;
       }
-    }
-    @if $position == "r" or $position == "x"  {
-      .p#{$position}-#{$i} {
-        padding-right: $i * .25rem;
+      @if ($p == "b" or $p == "y") {
+        padding-bottom: get-value($v) !important;
+      }
+      @if ($p == "l" or $p == "x") {
+        padding-left: get-value($v) !important;
       }
     }
   }
